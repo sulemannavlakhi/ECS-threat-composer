@@ -1,6 +1,6 @@
 
 resource "aws_s3_bucket" "ecs_s3" {
-  bucket = "suly-S3"
+  bucket = "ECS-S3"
 }
 
 resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
