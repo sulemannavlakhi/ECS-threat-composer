@@ -105,5 +105,3 @@ variable "egress_cidr" {
   type        = string
   description = "egress cidr"
 }
-
-
