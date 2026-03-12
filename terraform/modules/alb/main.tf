@@ -51,21 +51,21 @@ resource "aws_security_group" "sg1" {
     from_port        = 80
     to_port          = 80
     protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = [var.ingress_cidr]
   }  
 
   ingress {
     from_port        = 443
     to_port          = 443
     protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = [var.ingress_cidr]
   }  
 
   ingress {
     from_port        = var.application_port
     to_port          = var.application_port
     protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = [var.ingress_cidr]
   }  
 
 
@@ -73,10 +73,9 @@ resource "aws_security_group" "sg1" {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = [var.egress_cidr]
   }
 }
-
 #creating target group for alb
 
 resource "aws_lb_target_group" "alb-tg" {
