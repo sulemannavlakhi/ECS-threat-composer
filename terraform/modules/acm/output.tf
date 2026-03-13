@@ -1,4 +1,3 @@
-output "cert_arn" {
-  description = "certificate arn"
-  value       = aws_acm_certificate.acm.arn
+output "certificate_arn" {
+  value = aws_acm_certificate.acm.arn
 }
