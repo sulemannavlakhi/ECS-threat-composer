@@ -3,7 +3,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg1.id]
-  subnets           = [var.subnetpublic1_id, var.subnetpublic2_id]
+  subnets            = [var.subnet_public1_id, var.subnet_public2_id]
 }
 
 resource "aws_lb_listener" "alb_listener_http" {
@@ -27,10 +27,10 @@ resource "aws_lb_listener" "alb_listener_https" {
    load_balancer_arn    = aws_lb.alb.id
    port                 = 443
    protocol             = "HTTPS"
-   certificate_arn = var.cert_arn
+   certificate_arn      = var.certificate_arn
    default_action {
-    target_group_arn = aws_lb_target_group.alb-tg.id
-    type             = "forward"
+    target_group_arn    = aws_lb_target_group.alb_tg.id
+    type                = "forward"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_security_group" "sg1" {
   }
 }
 
-resource "aws_lb_target_group" "alb-tg" {
+resource "aws_lb_target_group" "alb_tg" {
   name     = "alb-tg"
   port     = var.application_port
   target_type = "ip" 
