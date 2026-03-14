@@ -14,7 +14,7 @@ jobs:
         contents: read
     
     steps:
-      - name: checkout code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
@@ -31,10 +31,11 @@ jobs:
           directory: ECS-threat-composer/terraform
           soft_fail: true
          
-      - name: terraform install
+      - name: Terraform Install
         uses: hashicorp/setup-terraform@v4
 
-      - name: terraform init
+      - name: Terraform Init
+        working-directory: terraform  
         run: terraform init
 
       - name: Setup TFLint
@@ -55,7 +56,9 @@ jobs:
         run: tflint -f compact
 
       - name: Terraform Validate
+        working-directory: terraform
         run: terraform validate
 
       - name: Terraform Plan
+        working-directory: terraform
         run: terraform plan
