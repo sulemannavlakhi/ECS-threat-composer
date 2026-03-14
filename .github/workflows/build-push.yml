@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6.0.0
         with:
-         aws-region: ${{ vars.AWS_REGION }}
+         aws-region: ${{ secrets.AWS_REGION }}
          role-to-assume: ${{ secrets.AWS_CRED }}
          role-session-name: threat-composer-build
 
